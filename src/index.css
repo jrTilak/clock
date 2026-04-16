@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap');
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline{
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-yellow: var(--yellow);
+}
+
+:root{
+  --font-mono: "Xanh Mono", monospace;
+  --background: oklch(1.0000 0 0);
+  --border: oklch(0.9219 0 0);
+  --foreground: oklch(0.1448 0 0);
+  --yellow: oklch(0.8535 0.1744 88.7734);
+}
+
+.dark {
+  --background: oklch(0.1448 0 0);
+  --foreground: oklch(0.9851 0 0);
+  --border: oklch(0.2768 0 0);
+  --yellow: oklch(0.9032 0.1817 98.2711);
+}
+
+@layer base {
+  * {
+    @apply border-border  
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
