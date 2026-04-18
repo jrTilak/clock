@@ -3,7 +3,11 @@ import { Component, createMemo, createSignal, onCleanup, onMount } from 'solid-j
 import { CLOCK_PRESETS } from './presets';
 
 
-export const Clock: Component = () => {
+type ClockProps = {
+  scale?: number
+}
+
+export const Clock: Component<ClockProps> = (props) => {
   const [now, setNow] = createSignal(new Date());
 
   onMount(() => {
@@ -32,7 +36,14 @@ export const Clock: Component = () => {
 
   return (
     <div class="flex min-h-[16rem] items-center justify-center p-6 font-mono">
-      {CLOCK_PRESETS["default-digital-clock"].preset({ ...parts() })}
+      <div
+        style={{
+          transform: `scale(${props.scale ?? 1})`,
+          'transform-origin': 'center',
+        }}
+      >
+        {CLOCK_PRESETS["default-digital-clock"].preset({ ...parts() })}
+      </div>
     </div>
   );
 };
